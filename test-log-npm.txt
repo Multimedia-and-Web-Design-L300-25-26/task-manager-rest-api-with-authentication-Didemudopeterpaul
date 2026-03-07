@@ -1,0 +1,138 @@
+
+> taskmanager_authentication@1.0.0 test
+> cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand --forceExit
+
+(node:4876) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL tests/tasks.test.js (12.344 s)
+  ΓùÅ Console
+
+    console.log
+      [dotenv@17.3.1] injecting env (1) from .env.test -- tip: ≡ƒöÉ prevent committing .env to code: https://dotenvx.com/precommit
+
+      at _log (node_modules/dotenv/lib/main.js:139:11)
+
+  ΓùÅ Task Routes ΓÇ║ should not allow access without token
+
+    thrown: "Exceeded timeout of 5000 ms for a hook.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 | let taskId;
+       6 |
+    >  7 | beforeAll(async () => {
+         | ^
+       8 |   const mongoose = (await import("mongoose")).default;
+       9 |   if (mongoose.connection.readyState === 0) {
+      10 |     await mongoose.connect(process.env.MONGO_URI);
+
+      at beforeAll (tests/tasks.test.js:7:1)
+
+  ΓùÅ Task Routes ΓÇ║ should create a task
+
+    thrown: "Exceeded timeout of 5000 ms for a hook.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 | let taskId;
+       6 |
+    >  7 | beforeAll(async () => {
+         | ^
+       8 |   const mongoose = (await import("mongoose")).default;
+       9 |   if (mongoose.connection.readyState === 0) {
+      10 |     await mongoose.connect(process.env.MONGO_URI);
+
+      at beforeAll (tests/tasks.test.js:7:1)
+
+  ΓùÅ Task Routes ΓÇ║ should get user tasks only
+
+    thrown: "Exceeded timeout of 5000 ms for a hook.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 | let taskId;
+       6 |
+    >  7 | beforeAll(async () => {
+         | ^
+       8 |   const mongoose = (await import("mongoose")).default;
+       9 |   if (mongoose.connection.readyState === 0) {
+      10 |     await mongoose.connect(process.env.MONGO_URI);
+
+      at beforeAll (tests/tasks.test.js:7:1)
+
+
+  ΓùÅ Test suite failed to run
+
+    thrown: "Exceeded timeout of 5000 ms for a hook.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      31 | });
+      32 |
+    > 33 | afterAll(async () => {
+         | ^
+      34 |   const mongoose = (await import("mongoose")).default;
+      35 |   await mongoose.connection.close();
+      36 | });
+
+      at afterAll (tests/tasks.test.js:33:1)
+
+FAIL tests/auth.test.js (10.94 s)
+  ΓùÅ Console
+
+    console.log
+      [dotenv@17.3.1] injecting env (1) from .env.test -- tip: ΓÜÖ∩╕Å  override existing env vars with { override: true }
+
+      at _log (node_modules/dotenv/lib/main.js:139:11)
+
+  ΓùÅ Auth Routes ΓÇ║ should register a user
+
+    thrown: "Exceeded timeout of 5000 ms for a hook.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       7 |   let connection;
+       8 |
+    >  9 |   beforeAll(async () => {
+         |   ^
+      10 |     // Ensure we're connected to the test database
+      11 |     const mongoose = (await import("mongoose")).default;
+      12 |     connection = await mongoose.connect(process.env.MONGO_URI);
+
+      at beforeAll (tests/auth.test.js:9:3)
+      at describe (tests/auth.test.js:4:1)
+
+  ΓùÅ Auth Routes ΓÇ║ should login user and return token
+
+    thrown: "Exceeded timeout of 5000 ms for a hook.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       7 |   let connection;
+       8 |
+    >  9 |   beforeAll(async () => {
+         |   ^
+      10 |     // Ensure we're connected to the test database
+      11 |     const mongoose = (await import("mongoose")).default;
+      12 |     connection = await mongoose.connect(process.env.MONGO_URI);
+
+      at beforeAll (tests/auth.test.js:9:3)
+      at describe (tests/auth.test.js:4:1)
+
+
+  ΓùÅ Test suite failed to run
+
+    thrown: "Exceeded timeout of 5000 ms for a hook.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      13 |   });
+      14 |
+    > 15 |   afterAll(async () => {
+         |   ^
+      16 |     // Clean up and close connection
+      17 |     const mongoose = (await import("mongoose")).default;
+      18 |     await mongoose.connection.close();
+
+      at afterAll (tests/auth.test.js:15:3)
+      at describe (tests/auth.test.js:4:1)
+
+Test Suites: 2 failed, 2 total
+Tests:       5 failed, 5 total
+Snapshots:   0 total
+Time:        23.45 s
+Ran all test suites.
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?

@@ -1,9 +1,26 @@
 import request from "supertest";
 import app from "../src/app.js";
+import { MongoMemoryServer } from "mongodb-memory-server";
+import mongoose from "mongoose";
+
 
 describe("Auth Routes", () => {
 
   let token;
+  let mongoServer;
+
+  beforeAll(async () => {
+    mongoServer = await MongoMemoryServer.create();
+    const uri = mongoServer.getUri();
+    await mongoose.connect(uri);
+  });
+
+  afterAll(async () => {
+    await mongoose.connection.close();
+    await mongoServer.stop();
+  });
+
+
 
   it("should register a user", async () => {
     const res = await request(app)

@@ -1,0 +1,172 @@
+
+> taskmanager_authentication@1.0.0 test
+> cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand --forceExit
+
+(node:14224) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL tests/tasks.test.js (5.55 s)
+  ΓùÅ Console
+
+    console.log
+      [dotenv@17.3.1] injecting env (1) from .env.test -- tip: ≡ƒöÉ encrypt with Dotenvx: https://dotenvx.com
+
+      at _log (node_modules/dotenv/lib/main.js:139:11)
+
+    console.error
+      JsonWebTokenError {
+        name: 'JsonWebTokenError',
+        message: 'jwt malformed'
+      }
+
+      25 |       return next();
+      26 |     } catch (error) {
+    > 27 |       console.error(error);
+         |               ^
+      28 |       return res.status(401).json({ message: "Not authorized, token failed" });
+      29 |     }
+      30 |   }
+
+      at error (src/middleware/authMiddleware.js:27:15)
+      at Layer.handleRequest (node_modules/router/lib/layer.js:152:17)
+      at next (node_modules/router/lib/route.js:157:13)
+      at Route.dispatch (node_modules/router/lib/route.js:117:3)
+      at handle (node_modules/router/index.js:435:11)
+      at Layer.handleRequest (node_modules/router/lib/layer.js:152:17)
+      at node_modules/router/index.js:295:15
+      at processParams (node_modules/router/index.js:582:12)
+      at next (node_modules/router/index.js:291:5)
+      at router.handle (node_modules/router/index.js:186:3)
+      at router (node_modules/router/index.js:60:12)
+      at Layer.handleRequest (node_modules/router/lib/layer.js:152:17)
+      at trimPrefix (node_modules/router/index.js:342:13)
+      at node_modules/router/index.js:297:9
+      at processParams (node_modules/router/index.js:582:12)
+      at next (node_modules/router/index.js:291:5)
+      at node_modules/body-parser/lib/read.js:171:5
+      at invokeCallback (node_modules/raw-body/index.js:238:16)
+      at done (node_modules/raw-body/index.js:227:7)
+      at IncomingMessage.onEnd (node_modules/raw-body/index.js:287:7)
+
+    console.error
+      JsonWebTokenError {
+        name: 'JsonWebTokenError',
+        message: 'jwt malformed'
+      }
+
+      25 |       return next();
+      26 |     } catch (error) {
+    > 27 |       console.error(error);
+         |               ^
+      28 |       return res.status(401).json({ message: "Not authorized, token failed" });
+      29 |     }
+      30 |   }
+
+      at error (src/middleware/authMiddleware.js:27:15)
+      at Layer.handleRequest (node_modules/router/lib/layer.js:152:17)
+      at next (node_modules/router/lib/route.js:157:13)
+      at Route.dispatch (node_modules/router/lib/route.js:117:3)
+      at handle (node_modules/router/index.js:435:11)
+      at Layer.handleRequest (node_modules/router/lib/layer.js:152:17)
+      at node_modules/router/index.js:295:15
+      at processParams (node_modules/router/index.js:582:12)
+      at next (node_modules/router/index.js:291:5)
+      at router.handle (node_modules/router/index.js:186:3)
+      at router (node_modules/router/index.js:60:12)
+      at Layer.handleRequest (node_modules/router/lib/layer.js:152:17)
+      at trimPrefix (node_modules/router/index.js:342:13)
+      at node_modules/router/index.js:297:9
+      at processParams (node_modules/router/index.js:582:12)
+      at next (node_modules/router/index.js:291:5)
+      at read (node_modules/body-parser/lib/read.js:53:5)
+      at jsonParser (node_modules/body-parser/lib/types/json.js:88:5)
+      at Layer.handleRequest (node_modules/router/lib/layer.js:152:17)
+      at trimPrefix (node_modules/router/index.js:342:13)
+      at node_modules/router/index.js:297:9
+      at processParams (node_modules/router/index.js:582:12)
+      at next (node_modules/router/index.js:291:5)
+      at router.handle (node_modules/router/index.js:186:3)
+      at app.handle (node_modules/express/lib/application.js:177:15)
+      at Server.app (node_modules/express/lib/express.js:38:9)
+
+  ΓùÅ Task Routes ΓÇ║ should create a task
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 201
+    Received: 401
+
+      60 |       });
+      61 |
+    > 62 |     expect(res.statusCode).toBe(201);
+         |                            ^
+      63 |     expect(res.body.title).toBe("Test Task");
+      64 |
+      65 |     taskId = res.body._id;
+
+      at Object.toBe (tests/tasks.test.js:62:28)
+
+  ΓùÅ Task Routes ΓÇ║ should get user tasks only
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 401
+
+      71 |       .set("Authorization", `Bearer ${token}`);
+      72 |
+    > 73 |     expect(res.statusCode).toBe(200);
+         |                            ^
+      74 |     expect(Array.isArray(res.body)).toBe(true);
+      75 |   });
+      76 |
+
+      at Object.toBe (tests/tasks.test.js:73:28)
+
+FAIL tests/auth.test.js
+  ΓùÅ Console
+
+    console.log
+      [dotenv@17.3.1] injecting env (1) from .env.test -- tip: ΓÜí∩╕Å secrets for agents: https://dotenvx.com/as2
+
+      at _log (node_modules/dotenv/lib/main.js:139:11)
+
+  ΓùÅ Auth Routes ΓÇ║ should register a user
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 201
+    Received: 500
+
+      32 |       });
+      33 |
+    > 34 |     expect(res.statusCode).toBe(201);
+         |                            ^
+      35 |     expect(res.body.email).toBe("test@example.com");
+      36 |   });
+      37 |
+
+      at Object.toBe (tests/auth.test.js:34:28)
+
+  ΓùÅ Auth Routes ΓÇ║ should login user and return token
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 500
+
+      44 |       });
+      45 |
+    > 46 |     expect(res.statusCode).toBe(200);
+         |                            ^
+      47 |     expect(res.body.token).toBeDefined();
+      48 |
+      49 |     token = res.body.token;
+
+      at Object.toBe (tests/auth.test.js:46:28)
+
+Test Suites: 2 failed, 2 total
+Tests:       4 failed, 1 passed, 5 total
+Snapshots:   0 total
+Time:        7.626 s, estimated 24 s
+Ran all test suites.
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?
