@@ -1,10 +1,19 @@
 import request from "supertest";
 import app from "../src/app.js";
+import { MongoMemoryServer } from "mongodb-memory-server";
+import mongoose from "mongoose";
+
 
 let token;
 let taskId;
+let mongoServer;
 
 beforeAll(async () => {
+  mongoServer = await MongoMemoryServer.create();
+  const uri = mongoServer.getUri();
+  await mongoose.connect(uri);
+
+
   // Register
   await request(app)
     .post("/api/auth/register")
@@ -24,6 +33,13 @@ beforeAll(async () => {
 
   token = res.body.token;
 });
+
+afterAll(async () => {
+  await mongoose.connection.close();
+  await mongoServer.stop();
+});
+
+
 
 describe("Task Routes", () => {
 

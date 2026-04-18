@@ -1,0 +1,29 @@
+
+> taskmanager_authentication@1.0.0 test
+> cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand --forceExit
+
+(node:11920) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS tests/tasks.test.js
+  ΓùÅ Console
+
+    console.log
+      [dotenv@17.3.1] injecting env (2) from .env.test -- tip: ≡ƒñû agentic secret storage: https://dotenvx.com/as2
+
+      at _log (node_modules/dotenv/lib/main.js:139:11)
+
+PASS tests/auth.test.js
+  ΓùÅ Console
+
+    console.log
+      [dotenv@17.3.1] injecting env (2) from .env.test -- tip: ≡ƒöÉ prevent committing .env to code: https://dotenvx.com/precommit
+
+      at _log (node_modules/dotenv/lib/main.js:139:11)
+
+
+Test Suites: 2 passed, 2 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        7.247 s, estimated 8 s
+Ran all test suites.
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?
